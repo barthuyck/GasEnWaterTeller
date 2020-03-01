@@ -62,6 +62,8 @@ vandaag = datetime.now() # - timedelta(days=2)
 print(vandaag)
 #bestandsnaam maken
 pad = "/home/pi/nutshoek/"
+# gebruiker
+userid = u'dhcuudje' #
 # pad = "/home/bart/PycharmProjects/WaterEnGasVerbruik/"
 bestandsnaam = pad + vandaag.strftime('%y%m%d') + "_iso_data_water.txt"
 # inlezen bestand
@@ -116,7 +118,7 @@ if te_controleren_index > 0:
         meetwaarden = Meetdata(meetdatum,meetliterwatervandaag,meetliterwaterperkwartier)
 
         try:
-            col_ref = db.collection(u'users').document(u'hg9ndEsTcuf0S0i7lPahRjUzCH83').collection(u'meetgegevens').document(dag)
+            col_ref = db.collection(u'users').document(userid).collection(u'meetgegevens').document(dag)
             col_ref.set(meetwaarden.to_dict())
             print('Wegschrijven naar Firebase ok')
         except google.cloud.exceptions.NotFound:
