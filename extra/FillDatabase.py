@@ -67,6 +67,9 @@ class Meetdata(object):
 # data directory to by uploaded
 Datadir = './data/' # path for with csv files to be uploaded
 Credpath = './' # path to .json file with firebase credentials
+# gebruiker
+userid = u'dhcuudje' #
+
 # list all filenames in a list
 filenames = next(os.walk(Datadir))[2]
 
@@ -122,7 +125,7 @@ for TXTFileName in TXTFileNames:
     # print(meetwaarden)
     # write data to database
     try:
-        col_ref = db.collection(u'users').document(u'hg9ndEsTcuf0S0i7lPahRjUzCH83').collection(u'meetgegevens').document(dag)
+        col_ref = db.collection(u'users').document(userid).collection(u'meetgegevens').document(dag)
         col_ref.set(meetwaarden.to_dict())
         print('Wegschrijven naar Firebase ok')
     except google.cloud.exceptions.NotFound:

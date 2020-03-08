@@ -60,7 +60,7 @@ class Meetdata(object):
 # de datum van vandaag
 vandaag = datetime.now() # - timedelta(days=2)
 print(vandaag)
-#bestandsnaam maken
+# bestandsnaam maken
 pad = "/home/pi/nutshoek/"
 # gebruiker
 userid = u'dhcuudje' #
