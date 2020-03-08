@@ -1,13 +1,15 @@
 #!/bin/python
 
-# last changed on feb 28, 2020
-# version BH - 1.0
+# last changed on march 8, 2020
+# version BH - 1.1
 #
 # this file checks change of pins and logs the detected pulses
 #
 # changelog:
-# version BH - 1.0
+# version BH - 1.0 - feb 28, 2020
 # only pin 17 is used.
+# version BH - 1.1 - march 8, 2020
+# add pin 27 for use with gas counter.
 
 
 
@@ -59,9 +61,11 @@ class LeesPulsen(object):
         self._counter = 0
         self.datapunten = []
         # Zet de GPIO pin als ingang.
-        GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP) # water
+        GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # gas
         # Gebruik een interrupt, wanneer actief run subroutinne 'gedrukt'
         GPIO.add_event_detect(17, GPIO.RISING, callback=self.gedrukt, bouncetime=50)
+        GPIO.add_event_detect(27, GPIO.RISING, callback=self.gedrukt, bouncetime=100)
 
     # Deze functie wordt uitgevoerd als er op de knop gedrukt is.
     def gedrukt(self, pin):
